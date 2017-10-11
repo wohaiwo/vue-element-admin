@@ -2,6 +2,7 @@ import Mock from 'mockjs'
 import loginAPI from './login'
 import articleAPI from './article'
 import remoteSearchAPI from './remoteSearch'
+import customer from './customer'
 
 Mock.setup({
   timeout: '350-600'
@@ -20,4 +21,6 @@ Mock.mock(/\/article\/pv/, 'get', articleAPI.getPv)
 // 搜索相关
 Mock.mock(/\/search\/user/, 'get', remoteSearchAPI.searchUser)
 
+// 客户管理相关
+Mock.mock(/\/customer\/list/, 'get', customer.getList)
 export default Mock
