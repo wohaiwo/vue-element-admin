@@ -90,6 +90,7 @@ export default {
                 // this.showDialog = true
           }).catch(() => {
             this.loading = false
+            console.log('用户名或密码错误。')
           })
         } else {
           console.log('error submit!!')
