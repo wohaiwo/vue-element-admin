@@ -15,6 +15,7 @@ import Layout from '../views/layout/Layout'
 * noDropdown : if `noDropdown:true` will has no submenu
 * meta : { role: ['admin'] }  will control the page role
 **/
+// 系统固定路由
 export const constantRouterMap = [
     { path: '/login', component: _import('login/index'), hidden: true },
     { path: '/authredirect', component: _import('login/authredirect'), hidden: true },
@@ -26,7 +27,9 @@ export const constantRouterMap = [
     redirect: '/dashboard',
     name: '首页',
     hidden: true,
-    children: [{ path: 'dashboard', component: _import('dashboard/index') }]
+    icon: 'zujian',
+    noDropdown: true,
+    children: [{ path: 'dashboard', component: _import('dashboard/index'), name: '首页' }]
   },
   {
     path: '/introduction',
@@ -44,6 +47,7 @@ export default new Router({
   routes: constantRouterMap
 })
 
+// 系统动态加载路由
 export const asyncRouterMap = [
   {
     path: '/permission',
@@ -140,6 +144,7 @@ export const asyncRouterMap = [
     name: 'errlog',
     icon: 'bug',
     noDropdown: true,
+    meta: { role: ['admin'] },
     children: [{ path: 'log', component: _import('errlog/index'), name: '错误日志' }]
   },
   {
@@ -164,5 +169,100 @@ export const asyncRouterMap = [
     children: [{ path: 'index', component: _import('theme/index'), name: '换肤' }]
   },
 
+  { path: '*', redirect: '/404', hidden: true }
+]
+
+// test route
+export const testRouterMap = [
+  {
+    path: '/permissioin',
+    component: Layout,
+    name: 'test路由测试',
+    icon: 'quanxian',
+    noDropdown: true,
+    hidden: false,
+    children: [{ path: 'index', component: _import('permission/index'), name: '权限测试页', meta: { role: ['admin'] }}]
+  },
+  {
+    path: '/customer',
+    component: Layout,
+    name: '客户管理',
+    noDropdown: false,
+    children: [
+      { path: 'audit', component: _import('customer/audit'), name: '审核管理' },
+      { path: 'file', component: _import('customer/file'), name: '客户档案' },
+      { path: 'historyReview', component: _import('customer/historyReview'), name: '我的历史审核' },
+      { path: 'pendingReview', component: _import('customer/pendingReview'), name: '我的待审核' }
+    ]
+  },
+  {
+    path: '/loan',
+    component: Layout,
+    name: '借款管理',
+    noDropdown: false,
+    children: [
+      { path: 'download', component: _import('excel/index'), name: '借款申请' },
+      { path: 'download', component: _import('excel/index'), name: '代付列表' },
+      { path: 'download', component: _import('excel/index'), name: '账单分期' },
+      { path: 'download', component: _import('excel/index'), name: '还款记录' },
+      { path: 'download', component: _import('excel/index'), name: '借款记录' },
+      { path: 'download', component: _import('excel/index'), name: '借款比例配置' },
+      { path: 'download', component: _import('excel/index'), name: '借款延期申请' },
+      { path: 'download', component: _import('excel/index'), name: '口袋借款管理' },
+      { path: 'download', component: _import('excel/index'), name: '仲裁查询' }
+    ]
+  },
+  {
+    path: '/proxy',
+    component: Layout,
+    name: '代理管理',
+    noDropdown: false,
+    children: [
+      { path: 'download', component: _import('excel/index'), name: '代理列表' },
+      { path: 'download', component: _import('excel/index'), name: '代理提现' },
+      { path: 'download', component: _import('excel/index'), name: '代理统计' },
+      { path: 'download', component: _import('excel/index'), name: '代理平台' },
+      { path: 'download', component: _import('excel/index'), name: '代理公告' }
+    ]
+  },
+  {
+    path: '/data',
+    component: Layout,
+    name: '数据管理',
+    noDropdown: false,
+    children: [
+      { path: 'download', component: _import('excel/index'), name: '借款统计' },
+      { path: 'download', component: _import('excel/index'), name: '还款统计' },
+      { path: 'download', component: _import('excel/index'), name: '今日统计' },
+      { path: 'download', component: _import('excel/index'), name: '历史统计' },
+      { path: 'download', component: _import('excel/index'), name: '渠道统计' },
+      { path: 'download', component: _import('excel/index'), name: '信审统计' },
+      { path: 'download', component: _import('excel/index'), name: '催款提醒统计' },
+      { path: 'download', component: _import('excel/index'), name: '黑名单' }
+    ]
+  },
+  {
+    path: '/system',
+    component: Layout,
+    name: '系统管理',
+    noDropdown: false,
+    children: [
+      { path: 'download', component: _import('excel/index'), name: '账号列表' },
+      { path: 'download', component: _import('excel/index'), name: '基本配置' },
+      { path: 'download', component: _import('excel/index'), name: '规则设置' },
+      { path: 'download', component: _import('excel/index'), name: '预测结果' },
+      { path: 'download', component: _import('excel/index'), name: '规则记录' }
+    ]
+  },
+  {
+    path: '/pay',
+    component: Layout,
+    name: '支付管理',
+    noDropdown: false,
+    children: [
+      { path: 'download', component: _import('excel/index'), name: '交易明细列表' },
+      { path: 'download', component: _import('excel/index'), name: '银行卡管理' }
+    ]
+  },
   { path: '*', redirect: '/404', hidden: true }
 ]

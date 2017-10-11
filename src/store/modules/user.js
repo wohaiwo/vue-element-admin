@@ -64,6 +64,8 @@ const user = {
       return new Promise((resolve, reject) => {
         getUserInfo(state.token).then(response => {
           const data = response.data
+          // 如果当前用户账号不存在，后台返回data为false
+          if (!data) reject()
           commit('SET_ROLES', data.role)
           commit('SET_NAME', data.name)
           commit('SET_AVATAR', data.avatar)

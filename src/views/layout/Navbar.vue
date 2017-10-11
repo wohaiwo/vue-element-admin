@@ -1,8 +1,8 @@
 <template>
 	<el-menu class="navbar" mode="horizontal">
 		<hamburger class="hamburger-container" :toggleClick="toggleSideBar" :isActive="sidebar.opened"></hamburger>
-		<levelbar></levelbar>
-		<tabs-view></tabs-view>
+		<levelbar></levelbar><!-- 面包屑模块 -->
+		<tabs-view></tabs-view> 
 		<error-log v-if="log.length>0" class="errLog-container" :logsList="log"></error-log>
 		<screenfull class='screenfull'></screenfull>
 		<el-dropdown class="avatar-container" trigger="click">

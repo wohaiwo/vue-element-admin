@@ -4,7 +4,13 @@ import NProgress from 'nprogress' // Progress 进度条
 import 'nprogress/nprogress.css'// Progress 进度条样式
 import { getToken } from '@/utils/auth' // 验权
 
-// permissiom judge
+/**
+ * permission judge
+ *
+ * @param {arryay} roles 当前用户的拥有的权限
+ * @param {string} permissionRoles 跳转到指定路由需要的权限
+ * @returns
+ */
 function hasPermission(roles, permissionRoles) {
   if (roles.indexOf('admin') >= 0) return true // admin权限 直接通过
   if (!permissionRoles) return true
@@ -34,9 +40,9 @@ router.beforeEach((to, from, next) => {
       } else {
         // 没有动态改变权限的需求可直接next() 删除下方权限判断 ↓
         if (hasPermission(store.getters.roles, to.meta.role)) {
-          next()//
+          next()  // 执行下一步的跳转操作
         } else {
-          next({ path: '/401', query: { noGoBack: true }})
+          next({ path: '/401', query: { noGoBack: true }})  // 没有权限，跳转到401页面
         }
         // 可删 ↑
       }

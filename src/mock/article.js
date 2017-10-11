@@ -23,7 +23,6 @@ for (let i = 0; i < count; i++) {
 export default {
   getList: config => {
     const { importance, type, title, page = 1, limit = 20, sort } = param2Obj(config.url)
-
     let mockList = List.filter(item => {
       if (importance && item.importance !== +importance) return false
       if (type && item.type !== type) return false
